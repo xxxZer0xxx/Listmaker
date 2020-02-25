@@ -46,7 +46,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun myTestMethod(){
-        println("Hello")
-    }
 }
