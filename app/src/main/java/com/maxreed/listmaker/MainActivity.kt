@@ -1,17 +1,15 @@
 package com.maxreed.listmaker
 
+
 import android.os.Bundle
 import android.text.InputType
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
-
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -50,8 +48,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun showCreateTodoListDialog() {
 
-        val dialogTitle = "What is the name of your list?"
-        val positiveButtonTitle = "Create"
+        val dialogTitle = getString(R.string.name_of_list)
+        val positiveButtonTitle = getString(R.string.create_list)
         val myDialog = AlertDialog.Builder(this)
         val todoTitleEditText = EditText(this)
         todoTitleEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
