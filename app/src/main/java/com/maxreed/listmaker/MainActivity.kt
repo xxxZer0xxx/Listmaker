@@ -1,10 +1,13 @@
 package com.maxreed.listmaker
 
 import android.os.Bundle
+import android.text.InputType
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -24,9 +27,8 @@ class MainActivity : AppCompatActivity() {
         todoListRecyclerView.layoutManager = LinearLayoutManager(this) // could use GridManager for Gridlayout
         todoListRecyclerView.adapter = TodoListAdapter()
 
-        fab.setOnClickListener { view ->
-            val adapter = todoListRecyclerView.adapter as TodoListAdapter
-            adapter.addNewItem()
+        fab.setOnClickListener { _->
+            showCreateTodoListDialog()
         }
     }
 
@@ -44,6 +46,25 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showCreateTodoListDialog() {
+
+        val dialogTitle = "What is the name of your list?"
+        val positiveButtonTitle = "Create"
+        val myDialog = AlertDialog.Builder(this)
+        val todoTitleEditText = EditText(this)
+        todoTitleEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
+
+        myDialog.setTitle(dialogTitle)
+        myDialog.setView(todoTitleEditText)
+
+        myDialog.setPositiveButton(positiveButtonTitle) {
+            dialog, _->
+            dialog.dismiss()
+        }
+
+        myDialog.create().show()
     }
 
 }
