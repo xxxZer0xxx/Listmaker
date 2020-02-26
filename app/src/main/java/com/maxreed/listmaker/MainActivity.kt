@@ -15,16 +15,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var todoListRecyclerView: RecyclerView
-    val listDataManager: ListDataManager = ListDataManager(this)
+    private val listDataManager: ListDataManager = ListDataManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        val lists = listDataManager.readLists()
         todoListRecyclerView = findViewById(R.id.lists_recyclerview)
         todoListRecyclerView.layoutManager = LinearLayoutManager(this) // could use GridManager for Gridlayout
-        todoListRecyclerView.adapter = TodoListAdapter()
+        todoListRecyclerView.adapter = TodoListAdapter(lists)
 
         fab.setOnClickListener { _->
             showCreateTodoListDialog()
@@ -63,7 +64,10 @@ class MainActivity : AppCompatActivity() {
         myDialog.setPositiveButton(positiveButtonTitle) {
             dialog, _->
             val adapter = todoListRecyclerView.adapter as TodoListAdapter
-            adapter.addNewItem(todoTitleEditText.text.toString()) // get EditText value
+            val list = TaskList(todoTitleEditText.text.toString())
+            listDataManager.saveList(list)
+            // adapter.addNewItem(todoTitleEditText.text.toString()) // get EditText value
+            adapter.addList(list)
             dialog.dismiss()
         }
 
