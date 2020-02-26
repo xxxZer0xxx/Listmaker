@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var todoListRecyclerView: RecyclerView
+    val listDataManager: ListDataManager = ListDataManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { _->
             showCreateTodoListDialog()
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
