@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var todoListRecyclerView: RecyclerView
+    private lateinit var todoListRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,8 +57,11 @@ class MainActivity : AppCompatActivity() {
         myDialog.setTitle(dialogTitle)
         myDialog.setView(todoTitleEditText)
 
+
         myDialog.setPositiveButton(positiveButtonTitle) {
             dialog, _->
+            val adapter = todoListRecyclerView.adapter as TodoListAdapter
+            adapter.addNewItem(todoTitleEditText.text.toString()) // get EditText value
             dialog.dismiss()
         }
 
