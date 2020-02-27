@@ -16,6 +16,7 @@ class ListDataManager (private val context: Context){
         val taskLists = ArrayList<TaskList>()
 
         for (taskList in contents){
+            @Suppress("UNCHECKED_CAST")
             val taskItems = ArrayList(taskList.value as HashSet<String>)
             val list = TaskList(taskList.key, taskItems)
             taskLists.add(list)
