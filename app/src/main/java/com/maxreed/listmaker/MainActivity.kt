@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TodoListAdapter.TodoListClickListener {
 
     private lateinit var todoListRecyclerView: RecyclerView
     private val listDataManager: ListDataManager = ListDataManager(this)
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val lists = listDataManager.readLists()
         todoListRecyclerView = findViewById(R.id.lists_recyclerview)
         todoListRecyclerView.layoutManager = LinearLayoutManager(this) // could use GridManager for Gridlayout
-        todoListRecyclerView.adapter = TodoListAdapter(lists)
+        todoListRecyclerView.adapter = TodoListAdapter(lists, this)
 
         fab.setOnClickListener { _->
             showCreateTodoListDialog()
@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity() {
             // adapter.addNewItem(todoTitleEditText.text.toString()) // get EditText value
             adapter.addList(list)
             dialog.dismiss()
+            showTaskListsItems(list)
         }
 
         myDialog.create().show()
@@ -83,6 +84,10 @@ class MainActivity : AppCompatActivity() {
         val taskListItem = Intent(this, DetailActivity::class.java)
         taskListItem.putExtra(INTENT_LIST_KEY, list)
         startActivity(taskListItem)
+    }
+
+    override fun listItemClicked(list: TaskList) {
+       showTaskListsItems(list)
     }
 
 }
