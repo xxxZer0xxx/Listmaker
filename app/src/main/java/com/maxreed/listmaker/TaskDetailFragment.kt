@@ -10,8 +10,13 @@ import android.view.ViewGroup
 
 class TaskDetailFragment : Fragment() {
 
+    lateinit var list: TaskList
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
+            list = it.getParcelable(ARG_LIST)!!
+        }
     }
 
     override fun onCreateView(
@@ -23,7 +28,17 @@ class TaskDetailFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(list: TaskList) = TaskDetailFragment()
+
+        private val ARG_LIST = "list"
+
+        fun newInstance(list: TaskList) : TaskDetailFragment {
+            val bundle = Bundle()
+            bundle.putParcelable(ARG_LIST, list)
+            val fragment = TaskDetailFragment()
+            fragment.arguments = bundle
+            return fragment
+
+        }
     }
 
 }
