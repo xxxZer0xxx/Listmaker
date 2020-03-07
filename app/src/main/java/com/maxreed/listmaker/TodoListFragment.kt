@@ -1,8 +1,5 @@
 package com.maxreed.listmaker
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import androidx.fragment.app.Fragment
@@ -11,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_todo_list.*
@@ -36,9 +34,8 @@ class TodoListFragment : Fragment(), TodoListAdapter.TodoListClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         activity?.let {
-            listDataManager = ListDataManager(it)
+            listDataManager = ViewModelProvider(this).get(ListDataManager::class.java)
         }
-
 
         val lists = listDataManager.readLists()
         todoListRecyclerView = view.findViewById(R.id.lists_recyclerview)
