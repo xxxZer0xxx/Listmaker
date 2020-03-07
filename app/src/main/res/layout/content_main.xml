@@ -8,10 +8,10 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <FrameLayout
+    <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragment_container">
-
-    </FrameLayout>
+        class="com.maxreed.listmaker.TodoListFragment"
+        android:id="@+id/todo_list_fragment" >
+    </fragment>
 </androidx.constraintlayout.widget.ConstraintLayout>
