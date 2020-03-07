@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -62,6 +63,10 @@ class TodoListFragment : Fragment(), TodoListAdapter.TodoListClickListener {
     }
 
     override fun listItemClicked(list: TaskList) {
+
+        view?.let {
+            it.findNavController().navigate(R.id.action_todoListFragment_to_taskDetailFragment)
+        }
 
     }
 
