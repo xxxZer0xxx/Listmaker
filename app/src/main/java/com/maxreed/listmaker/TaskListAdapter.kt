@@ -17,7 +17,7 @@ class TaskListAdapter(var list: TaskList): RecyclerView.Adapter<TaskListViewHold
     }
 
     override fun onBindViewHolder(holder: TaskListViewHolder, position: Int) {
-        holder.taskTextView?.text = list.tasks[position]
+        holder.taskTextView.text = list.tasks[position]
     }
 
 }

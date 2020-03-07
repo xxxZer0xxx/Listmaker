@@ -15,5 +15,9 @@
     <fragment
         android:id="@+id/taskDetailFragment"
         android:name="com.maxreed.listmaker.TaskDetailFragment"
-        android:label="TaskDetailFragment" />
+        android:label="TaskDetailFragment" >
+        <argument
+            android:name="list_string"
+            app:argType="string" />
+    </fragment>
 </navigation>
