@@ -15,6 +15,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), TodoListAdapter.TodoListClickListener {
 
+    private lateinit var todoListRecyclerView: RecyclerView
+    private lateinit var listDataManager: ListDataManager
+
     companion object{
         const val INTENT_LIST_KEY = "list"
         const val LIST_DETAIL_REQUEST_CODE = 123
